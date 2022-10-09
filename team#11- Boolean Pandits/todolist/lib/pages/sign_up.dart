@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +42,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Container(
         padding: const EdgeInsets.only(top: (30)),
         child: Padding(
@@ -97,10 +100,13 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
+                            style: TextStyle(color: Colors.white),
                             enableSuggestions: false,
                             autocorrect: false,
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(255, 56, 47, 47),
                               hintStyle: GoogleFonts.poppins(
                                 color: Colors.grey[500],
                               ),
@@ -135,10 +141,13 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
+                            style: TextStyle(color: Colors.white),
                             enableSuggestions: false,
                             autocorrect: false,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(255, 56, 47, 47),
                               hintStyle: GoogleFonts.poppins(
                                 color: Colors.grey[500],
                               ),
@@ -173,9 +182,12 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
+                            style: TextStyle(color: Colors.white),
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(255, 56, 47, 47),
                               hintStyle: GoogleFonts.poppins(
                                 color: Colors.grey[500],
                               ),
@@ -221,10 +233,13 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
+                            style: TextStyle(color: Colors.white),
                             enableSuggestions: false,
                             autocorrect: false,
                             keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(255, 56, 47, 47),
                               hintStyle: GoogleFonts.poppins(
                                 color: Colors.grey[500],
                               ),
@@ -268,8 +283,7 @@ class _SignUpState extends State<SignUp> {
 
                               auth
                                   .createUserWithEmailAndPassword(
-                                      email: _email,
-                                      password: _password)
+                                      email: _email, password: _password)
                                   .then((_) => Navigator.of(context)
                                       .pushReplacement(MaterialPageRoute(
                                           builder: (context) =>
@@ -309,7 +323,7 @@ class _SignUpState extends State<SignUp> {
                             Text(
                               style: GoogleFonts.poppins(
                                 color: Colors.grey[500],
-                                fontSize: (10.42),
+                                fontSize: (15),
                                 fontWeight: FontWeight.w500,
                               ),
                               'Already Registered?',
@@ -325,7 +339,7 @@ class _SignUpState extends State<SignUp> {
                               child: Text(
                                 style: GoogleFonts.poppins(
                                   color: Colors.blue[800],
-                                  fontSize: (10.42),
+                                  fontSize: (15),
                                   fontWeight: FontWeight.w500,
                                 ),
                                 'Login here!',

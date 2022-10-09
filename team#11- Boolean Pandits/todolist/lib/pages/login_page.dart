@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   // bool isElevated = false;
 
   final auth = FirebaseAuth.instance;
+  AuthClass authClass = AuthClass();
 
   @override
   void initState() {
@@ -41,6 +42,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,13 +83,17 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: (50),
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   enableSuggestions: false,
                   autocorrect: false,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintStyle: GoogleFonts.poppins(
-                      color: Colors.grey[300],
+                      color: Colors.grey[400],
                     ),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 56, 47, 47),
+                    // enabledBorder: OutlineInputBorder(),
                     hintText: 'someone@gmail.com',
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -116,12 +122,15 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: (50),
                 child: TextField(
+                  style: TextStyle(color: Colors.white),
                   enableSuggestions: false,
                   autocorrect: false,
                   decoration: InputDecoration(
                     hintStyle: GoogleFonts.poppins(
-                      color: Colors.grey[300],
+                      color: Colors.grey[400],
                     ),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 56, 47, 47),
                     suffixIcon: GestureDetector(
                       onTap: () {
                         setState(() {
@@ -239,12 +248,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   // need to add google sign in
                   onPressed: () async {
-                    try {
-                      AuthenticationServices.signInWithGoogle().then((_) =>
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage())));
-                    } catch (e) {}
+                    authClass.googleSignIn(context);
                   },
                   child: Container(
                     padding: const EdgeInsets.only(
