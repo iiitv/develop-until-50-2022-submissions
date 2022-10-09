@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="icon/favicon.ico" type="image/x-icon">
     <link href="http://fonts.cdnfonts.com/css/harry-potter" rel="stylesheet">
+    <link rel="stylesheet" href="styles/bg_game.css">
     </head>
     <body>
         <section id="head-nav">
@@ -24,6 +25,7 @@
                     <li><a href="lifestyle.html">Lifestyle</a></li>
                     <li><a href="stationery.html">Stationary</a></li>
                     <li id="search-li">
+                        <a href="login.html"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
                         <form action="" id="search-bar">
                             <input type="text" name="" id="search" placeholder="Nimbus 2000...."><label for="search"><i class="fa fa-search" aria-hidden="true" id="search-icon"></i></label>
                         </form>
@@ -35,22 +37,40 @@
         <section id="products">
             <h1 style="text-align: center;">BEST SELLERS</h1>
             <div id="container-trend">
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
-                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt=""><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
+                <div class="products"><img src="styles/src/games/game1/game1_1.png" alt="" onclick="loadDetails(this)" id="games_p1"><caption>Harry Potter Gift Pack 1</caption></div>
             </div>
         </section>
-
-
+        <section id="product-details">
+            <div id="product-images">
+                <div class="images"><img src="styles/src/lifestyle/product1/product1_1.png" alt="" id="img1"></div>
+                <div class="images"><img src="styles/src/lifestyle/product1/product1_2.png" alt="" id="img2"></div>
+                <div class="images"><img src="styles/src/lifestyle/product1/product1_3.png" alt="" id="img3"></div>
+                <div class="images"><img src="styles/src/lifestyle/product1/product1_4.png" alt="" id="img4"></div>
+            </div>
+            <div id="details">
+                <div id="product_name">    
+                    <h1>Harry Potter gift combo</h1>
+                </div>
+                <div id="buy">
+                    <h2>$500</h2>
+                    <div class="btn">
+                        <button>Add to cart</button>
+                        <button onclick="back()">Go Back</button>
+                    </div>
+                </div>
+            </div>
+        </section>
         <footer>
             <ul id="footer-list">
                 <li><i class="fa fa-phone" aria-hidden="true"></i>Contact Us</li>
@@ -62,4 +82,6 @@
             </ul>
             <p id="copyright"><i class="fa fa-copyright" aria-hidden="true"></i> 2022 Horcrux, Inc. All rights reserved.</p>
         </footer>
+        <script src="product_details.js"></script>
+        <script src="product.js"></script>
 </html>

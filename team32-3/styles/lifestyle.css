@@ -1,7 +1,8 @@
 *{
     padding: 0;
     margin: 0;
-    color: black;
+    color: green;
+    font-size: 1.1rem;
     font-family: 'Harry Potter', sans-serif;
 }
 html{
@@ -43,6 +44,14 @@ ul{
 #search-li{
     margin-left: auto;
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa{
+    margin-right: 10px;
+    color: black;
 }
 
 a{
@@ -95,6 +104,54 @@ a{
 #trending{
     margin: 100px 0;
 }
+
+
+#product-details{
+    display: none;
+    grid-template-rows: 1fr 0.68fr;
+}
+
+#details{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+#buy{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.btn{
+    display: flex;
+    flex-direction: column;
+}
+.btn *{
+    margin-bottom: 10px;
+}
+#product-images{
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    gap: 2.5px 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.images *{
+    width: 200px;
+    height: 350px;
+    border: 1px solid white;
+}
+
+
+
+
+
+
 
 footer{
     font-size: 0.7em;

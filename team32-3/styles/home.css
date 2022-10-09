@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    color: black;
+    color: green;
     font-family: 'Harry Potter', sans-serif;
 }
 html{
@@ -42,8 +42,15 @@ ul{
 #search-li{
     margin-left: auto;
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.fa{
+    margin-right: 10px;
+    color: black;
+}
 a{
     text-decoration: none;
 }
