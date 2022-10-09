@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 
 const productRoute = require("./routes/product")
+const orderRoute = require("./routes/order")
 
 // setting up PORT
 const PORT = process.env.PORT || 3000
@@ -24,7 +25,12 @@ const connect = async () => {
 
 //  middlewares
 app.use(express.json())
+app.use((req, res, next) => {
+    req.user = { id: "123" }
+    next()
+})
 app.use("/products", productRoute)
+app.use("/orders", orderRoute)
 
 // error handler
 app.use((req, res) => {
