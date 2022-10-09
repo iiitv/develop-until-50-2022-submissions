@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overlay_support/overlay_support.dart';
+import 'package:todolist/pages/home_page.dart';
+import 'package:todolist/pages/loginWithGoogle.dart';
 import 'package:todolist/pages/sign_up.dart';
 import 'package:todolist/services/authentication.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -14,26 +18,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String name = "";
-  String email = "";
+  late String password;
+  late String email;
   bool changeButton = false;
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
   // bool isElevated = false;
-  late TextEditingController _email = TextEditingController();
-  late TextEditingController _password = TextEditingController();
+
+  final auth = FirebaseAuth.instance;
 
   @override
   void initState() {
-    _email = TextEditingController();
-    _password = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    _email.dispose();
-    _password.dispose();
     super.dispose();
   }
 
@@ -81,7 +81,6 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: (50),
                 child: TextField(
-                  controller: _email,
                   enableSuggestions: false,
                   autocorrect: false,
                   keyboardType: TextInputType.emailAddress,
@@ -96,6 +95,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      email = value.trim();
+                    });
+                  },
                 ),
               ).px12(),
               const SizedBox(
@@ -112,7 +116,6 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: (50),
                 child: TextField(
-                  controller: _password,
                   enableSuggestions: false,
                   autocorrect: false,
                   decoration: InputDecoration(
@@ -136,6 +139,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      password = value.trim();
+                    });
+                  },
                   obscureText: _obscureText,
                 ),
               ).px12(),
@@ -169,10 +177,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: () async {
-                    LoginInWithEmailPassword(
-                            email: _email.toString(),
-                            password: _password.toString())
-                        .loginWithEmailPassword();
+                    auth
+                        .signInWithEmailAndPassword(
+                            email: email, password: password)
+                        .then((_) {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const HomePage()));
+                    });
                   },
                   child: SizedBox(
                     child: Row(
@@ -227,7 +238,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   // need to add google sign in
-                  onPressed: () async {},
+                  onPressed: () async {
+                    try {
+                      AuthenticationServices.signInWithGoogle().then((_) =>
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const HomePage())));
+                    } catch (e) {}
+                  },
                   child: Container(
                     padding: const EdgeInsets.only(
                       left: (13.2),
@@ -272,8 +290,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextButton(
                     onPressed: () async {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => SignUp()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUp()));
                     },
                     child: Text(
                       style: GoogleFonts.poppins(

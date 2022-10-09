@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todolist/pages/home_page.dart';
 import 'package:todolist/pages/login_page.dart';
+import 'package:todolist/pages/verifyView.dart';
+import 'package:todolist/services/databaseuser.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -14,27 +18,24 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool _obscureText = true;
-  late final TextEditingController _email;
-  late final TextEditingController _password;
-  late final TextEditingController _username;
-  late final TextEditingController _phonenumber;
+  late String _email;
+  late String _password;
+  late String _username;
+  late String _phonenumber;
 
-  @override
-  void initState() {
-    _email = TextEditingController();
-    _password = TextEditingController();
-    _username = TextEditingController();
-    _phonenumber = TextEditingController();
+  DatabaseMethods databaseMethods = DatabaseMethods();
 
-    super.initState();
-  }
+  final auth = FirebaseAuth.instance;
 
-  @override
-  void dispose() {
-    _email.dispose();
-    _password.dispose();
-    super.dispose();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,6 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
-                            controller: _username,
                             enableSuggestions: false,
                             autocorrect: false,
                             keyboardType: TextInputType.name,
@@ -111,6 +111,11 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                             ),
+                            onChanged: ((value) {
+                              setState(() {
+                                _username = value;
+                              });
+                            }),
                           ),
                         ),
                         const SizedBox(
@@ -130,7 +135,6 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
-                            controller: _email,
                             enableSuggestions: false,
                             autocorrect: false,
                             keyboardType: TextInputType.emailAddress,
@@ -145,6 +149,11 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                             ),
+                            onChanged: (value) {
+                              setState(() {
+                                _email = value.trim();
+                              });
+                            },
                           ),
                         ),
                         const SizedBox(
@@ -164,7 +173,6 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
-                            controller: _password,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
@@ -188,6 +196,11 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                             ),
+                            onChanged: (value) {
+                              setState(() {
+                                _password = value.trim();
+                              });
+                            },
                             obscureText: _obscureText,
                           ),
                         ),
@@ -208,7 +221,6 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(
                           height: (50),
                           child: TextField(
-                            controller: _phonenumber,
                             enableSuggestions: false,
                             autocorrect: false,
                             keyboardType: TextInputType.phone,
@@ -223,6 +235,9 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                             ),
+                            onChanged: (value) {
+                              _phonenumber = value.trim();
+                            },
                           ),
                         ),
                         const SizedBox(
@@ -238,13 +253,34 @@ class _SignUpState extends State<SignUp> {
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            onPressed: () async {},
+                            onPressed: () async {
+                              print("creating map !!!!!!!!!!!!!!");
+                              Map<String, String> userMap = {
+                                "name": _username,
+                                "email": _email,
+                                "phonenumber": _phonenumber
+                              };
+                              print(
+                                  "created map !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+                              databaseMethods.updoadUserInfo(userMap);
+                              print(
+                                  "uploaded user !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+
+                              auth
+                                  .createUserWithEmailAndPassword(
+                                      email: _email,
+                                      password: _password)
+                                  .then((_) => Navigator.of(context)
+                                      .pushReplacement(MaterialPageRoute(
+                                          builder: (context) =>
+                                              const VerifyPage())));
+                            },
                             child: SizedBox(
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: (9.86),
                                   ),
                                   Text(
@@ -264,7 +300,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: (27.76),
                         ),
                         Row(
