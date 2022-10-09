@@ -1,0 +1,10 @@
+GET http://localhost:4000/app/getProducts
+Content-Type: application/json
+
+# {
+#   "firstName": "Brijesh",
+#   "lastName": "Agal",
+#   "userName": "vampireAb",
+#   "email": "202051051@iiitvadodara.ac.in",
+#   "password": "vampireAb"
+# }
