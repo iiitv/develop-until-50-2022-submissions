@@ -23,6 +23,7 @@ const connect = async () => {
 }
 
 //  middlewares
+app.use(express.json())
 app.use("/products", productRoute)
 
 // error handler
