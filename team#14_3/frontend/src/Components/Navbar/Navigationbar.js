@@ -37,7 +37,7 @@ const Navigationbar = () => {
   const onSearch = (value) => console.log(value);
   return (
     <div className="navbar">
-      <h2>BUY THAT</h2>
+      <h2>BuyThat</h2>
       <div style={{ width: 325, fontSize: "bold" }}>
         <Menu
           onClick={onClick}
