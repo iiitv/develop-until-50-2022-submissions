@@ -118,23 +118,38 @@ a{
     align-items: center;
 }
 
+#details *{
+    font-size: 1.2em;
+}
+
 #buy{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.btn{
+#btn{
     display: flex;
     flex-direction: column;
 }
-.btn *{
+
+#btn *{
+    cursor: pointer;
+}
+
+#btn *:hover{
+    opacity: 0.5;
+}
+#btn *{
     margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: small;
 }
 #product-images{
     display: grid;
-    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-columns: 300px 300px 300px 300px;
     gap: 2.5px 5px;
     margin-left: 10px;
     margin-top: 10px;
@@ -142,19 +157,13 @@ a{
 }
 
 .images *{
-    width: 200px;
+    width: 300px;
     height: 350px;
     border: 1px solid white;
 }
 
-
-
-
-
-
-
 footer{
-    font-size: 0.7em;
+    /* font-size: 0.2rem; */
     background-color: chocolate;
     width: 100%;
     position: sticky;
@@ -167,15 +176,17 @@ footer{
 
 footer>*{
     margin:0 10px;
+    font-size: 0.7rem;
 }
 
 #footer-list{
     margin-top: 10px;
     flex-wrap: wrap;
-
+    
 }
 
 #footer-list li{
+    font-size: 0.7rem;
     margin: 0px 10px;
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 10px;

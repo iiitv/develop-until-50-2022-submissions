@@ -95,6 +95,7 @@ a{
     display: block;
     margin: auto;
     width: 70vw;
+    min-width: 500px;
     height: 500px;
 }
 
@@ -169,6 +170,7 @@ footer>*{
 }
 
 #footer-list li{
+    font-size: 0.7rem;
     margin: 0px 10px;
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 10px;
