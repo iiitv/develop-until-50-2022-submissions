@@ -62,9 +62,7 @@ const check = async(obj,res) =>{
 
 const login = async(obj,res) =>{
     try{
-        // let hashPassword = await bcrypt.hash(obj.password, 10);
         let hashPassword = obj.password;
-        // console.log(hashPassword);
         console.log(obj.username);
         console.log(obj.password);
         const result = await Users.findOne({username:obj.username,password:hashPassword});

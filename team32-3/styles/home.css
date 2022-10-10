@@ -145,6 +145,65 @@ a{
 #trending{
     margin: 100px 0;
 }
+/* ------------------------------------------------------------------------------------------- */
+
+
+
+#product-details{
+    display: none;
+    grid-template-rows: 1fr 0.68fr;
+}
+
+#details{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+#details *{
+    font-size: 1.2em;
+}
+
+#buy{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn{
+    display: flex;
+    flex-direction: column;
+}
+
+#btn *{
+    cursor: pointer;
+}
+
+#btn *:hover{
+    opacity: 0.5;
+}
+#btn *{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: small;
+}
+#product-images{
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    gap: 2.5px 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.images *{
+    width: 300px;
+    height: 350px;
+    border: 1px solid white;
+}
 
 
 /* --------------------------------------------------------------------------------------------------------------- */

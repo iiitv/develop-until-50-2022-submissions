@@ -35,5 +35,11 @@ const details =
         img2:"styles/src/games/game1/game1_2.png",
         img3:"styles/src/games/game1/game1_3.png",
         img4:"styles/src/games/game1/game1_4.png",
+    },
+    "home1":{
+        img1:"styles/src/home/product1/product1_1.png",
+        img2:"styles/src/home/product1/product1_2.png",
+        img3:"styles/src/home/product1/product1_1.png",
+        img4:"styles/src/home/product1/product1_2.png"
     }
 }
