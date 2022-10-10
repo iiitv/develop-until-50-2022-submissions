@@ -1,0 +1,9 @@
+let l={};
+var img1 = document.getElementById("img1");
+img1.src=l['img1'];
+var img2 = document.getElementById("img2");
+img1.src=l['img2'];
+var img3 = document.getElementById("img3");
+img1.src=l['img3'];
+var img4 = document.getElementById("img4");
+img1.src=l['img4'];
