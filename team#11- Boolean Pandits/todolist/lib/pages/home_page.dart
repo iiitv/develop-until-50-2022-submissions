@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           title: const Text(
             "Today's Schedule",
             style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
           ).py20(),
           actions: [
             IconButton(
@@ -49,12 +49,12 @@ class _HomePageState extends State<HomePage> {
               width: 25,
             )
           ],
-          bottom: const PreferredSize(
+          bottom: PreferredSize(
               preferredSize: Size.fromHeight(35),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Monday 10",
+                  DateTime.now().toString(),
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
