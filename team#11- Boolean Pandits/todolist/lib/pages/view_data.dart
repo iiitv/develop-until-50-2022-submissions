@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class ViewData extends StatefulWidget {
@@ -29,6 +30,10 @@ class _ViewDataState extends State<ViewData> {
   late String category;
   bool edit = false;
 
+  late DateTime _selectedDate;
+  String dateText = "";
+  late String time;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -45,6 +50,8 @@ class _ViewDataState extends State<ViewData> {
     type = widget.document["task"];
 
     category = widget.document["Category"];
+
+    dateText = widget.document["dateTime"];
   }
 
   @override
@@ -198,6 +205,29 @@ class _ViewDataState extends State<ViewData> {
                         ],
                       ),
                       const SizedBox(
+                        height: 20,
+                      ),
+                      edit
+                          ? Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      _presentDatePicker();
+                                    },
+                                    icon: const Icon(Icons.calendar_month,
+                                        color: Colors.white)),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                "Choose Time"
+                                    .text
+                                    .color(Colors.white)
+                                    .textStyle(TextStyle(fontSize: 15))
+                                    .make(),
+                              ],
+                            )
+                          : Container(),
+                      const SizedBox(
                         height: 50,
                       ),
                       edit ? button() : Container(),
@@ -215,6 +245,24 @@ class _ViewDataState extends State<ViewData> {
     );
   }
 
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(3000),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      } else {
+        setState(() {
+          _selectedDate = pickedDate;
+          dateText = DateFormat.yMMMEd().format(pickedDate);
+        });
+      }
+    });
+  }
+
   Widget button() {
     return InkWell(
       onTap: () {
@@ -222,7 +270,8 @@ class _ViewDataState extends State<ViewData> {
           "Category": category,
           "description": _description.text,
           "task": type,
-          "title": _titlecontroller.text
+          "title": _titlecontroller.text,
+          "dateTime": dateText
         });
         Navigator.pop(context);
       },

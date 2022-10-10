@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AddToDoPage extends StatefulWidget {
@@ -19,6 +20,18 @@ class _AddToDoPageState extends State<AddToDoPage> {
   TextEditingController _description = TextEditingController();
   String type = "";
   String category = "";
+
+  late DateTime _selectedDate;
+  String dateText = "";
+  late String time;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedDate = DateTime.now();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -128,6 +141,27 @@ class _AddToDoPageState extends State<AddToDoPage> {
                         ],
                       ),
                       const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                _presentDatePicker();
+                              },
+                              icon: const Icon(Icons.calendar_month,
+                                  color: Colors.white)),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          "Choose Time"
+                              .text
+                              .color(Colors.white)
+                              .textStyle(TextStyle(fontSize: 15))
+                              .make(),
+                        ],
+                      ),
+                      const SizedBox(
                         height: 50,
                       ),
                       button(),
@@ -145,6 +179,40 @@ class _AddToDoPageState extends State<AddToDoPage> {
     );
   }
 
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(3000),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      } else {
+        setState(() {
+          _selectedDate = pickedDate;
+          dateText = DateFormat.yMMMEd().format(pickedDate);
+        });
+      }
+    });
+  }
+
+  // _pickedDate() async {
+  //   DateTime? dateTime = await showDatePicker(
+  //       context: context,
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime(DateTime.now().year - 5),
+  //       lastDate: DateTime(DateTime.now().year - 5));
+
+  //   if (dateTime != null) {
+  //     setState(() {
+  //       pickedDate = dateTime;
+  //     });
+
+  //     time = "Date: ${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+  //   }
+  // }
+
   Widget button() {
     return InkWell(
       onTap: () {
@@ -152,7 +220,8 @@ class _AddToDoPageState extends State<AddToDoPage> {
           "Category": category,
           "description": _description.text,
           "task": type,
-          "title": _titlecontroller.text
+          "title": _titlecontroller.text,
+          "dateTime": dateText
         });
         Navigator.pop(context);
       },

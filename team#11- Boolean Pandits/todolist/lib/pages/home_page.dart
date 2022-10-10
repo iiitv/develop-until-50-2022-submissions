@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                           (route) => false));
                 },
-                icon: Icon(Icons.logout_outlined)),
+                icon: const Icon(Icons.logout_outlined)),
             CircleAvatar(
               backgroundImage: AssetImage("assets/images/avatar.png"),
             ),
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                         iconBgColor: Colors.white,
                         iconColor: iconcolor,
                         iconData: iconData,
-                        time: "10 am",
+                        time: document["dateTime"],
                       ),
                     );
                   });
