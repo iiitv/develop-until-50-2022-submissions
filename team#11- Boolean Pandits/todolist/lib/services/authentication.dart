@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:todolist/pages/login_page.dart';
 import 'package:todolist/services/databaseuser.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -142,6 +143,7 @@ class AuthClass {
       await _googleSignIn.signOut();
       await _auth.signOut();
       await storage.delete(key: "token");
+      
     } catch (e) {
       final snackBar = SnackBar(content: Text(e.toString()));
       ScaffoldMessenger.of(context!).showSnackBar(snackBar);

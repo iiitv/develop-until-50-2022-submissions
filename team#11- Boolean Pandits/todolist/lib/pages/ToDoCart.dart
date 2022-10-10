@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class ToDoCart extends StatelessWidget {
+class ToDoCart extends StatefulWidget {
   const ToDoCart({
     Key? key,
     required this.title,
@@ -25,6 +25,11 @@ class ToDoCart extends StatelessWidget {
   final Color iconBgColor;
 
   @override
+  State<ToDoCart> createState() => _ToDoCartState();
+}
+
+class _ToDoCartState extends State<ToDoCart> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -37,13 +42,20 @@ class ToDoCart extends StatelessWidget {
             ),
             child: Transform.scale(
               scale: 1.5,
-              child: Checkbox(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                activeColor: Color(0xff6cf8a9),
-                checkColor: Color(0xff0e3e26),
-                value: check,
-                onChanged: (bool? value) {},
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    !widget.check;
+                  });
+                },
+                child: Checkbox(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                  activeColor: Color(0xff6cf8a9),
+                  checkColor: Color(0xff0e3e26),
+                  value: widget.check,
+                  onChanged: (bool? value) {},
+                ),
               ),
             ),
           ),
@@ -63,12 +75,12 @@ class ToDoCart extends StatelessWidget {
                       height: 33,
                       width: 36,
                       decoration: BoxDecoration(
-                        color: iconBgColor,
+                        color: widget.iconBgColor,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
-                        iconData,
-                        color: iconColor,
+                        widget.iconData,
+                        color: widget.iconColor,
                       ),
                     ),
                     const SizedBox(
@@ -76,7 +88,7 @@ class ToDoCart extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        title,
+                        widget.title,
                         style: const TextStyle(
                             fontSize: 18,
                             letterSpacing: 1,
@@ -85,7 +97,7 @@ class ToDoCart extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      time,
+                      widget.time,
                       style: TextStyle(fontSize: 15, color: Colors.white),
                     ),
                     const SizedBox(

@@ -36,6 +36,7 @@ class _MyAppState extends State<MyApp> {
     if (tokne != null)
       setState(() {
         currentPage = HomePage();
+        //currentPage = LoginPage();
       });
   }
 

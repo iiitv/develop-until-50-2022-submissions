@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:todolist/pages/AddToDoPage.dart';
 import 'package:todolist/pages/ToDoCart.dart';
 import 'package:todolist/pages/login_page.dart';
+import 'package:todolist/pages/view_data.dart';
 import 'package:todolist/services/authentication.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -29,9 +30,18 @@ class _HomePageState extends State<HomePage> {
           title: const Text(
             "Today's Schedule",
             style: TextStyle(
-                fontSize: 34, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          actions: const [
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
+          ).py20(),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  authClass.signOut().then((value) =>
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          (route) => false));
+                },
+                icon: Icon(Icons.logout_outlined)),
             CircleAvatar(
               backgroundImage: AssetImage("assets/images/avatar.png"),
             ),
@@ -46,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   "Monday 10",
                   style: TextStyle(
-                      fontSize: 33,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: Colors.white),
                 ),
@@ -136,15 +146,25 @@ class _HomePageState extends State<HomePage> {
                         iconData = Icons.run_circle_outlined;
                         iconcolor = Colors.deepPurpleAccent;
                     }
-                    return ToDoCart(
-                      title: document["title"] == null
-                          ? "Hey There"
-                          : document["title"],
-                      check: true,
-                      iconBgColor: Colors.white,
-                      iconColor: iconcolor,
-                      iconData: iconData,
-                      time: "10 am",
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (builder) => ViewData(
+                                    document: document,
+                                    id: snapshot.data!.docs[index].id)));
+                      },
+                      child: ToDoCart(
+                        title: document["title"] == null
+                            ? "Hey There"
+                            : document["title"],
+                        check: false,
+                        iconBgColor: Colors.white,
+                        iconColor: iconcolor,
+                        iconData: iconData,
+                        time: "10 am",
+                      ),
                     );
                   });
             }),
