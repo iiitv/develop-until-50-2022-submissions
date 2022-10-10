@@ -1,0 +1,21 @@
+form {
+    position: relative;
+    top: 25px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    box-shadow: 5px 5px 5px 5px gray;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login input {
+    margin-bottom: 25px;
+    border: 2px solid burlywood;
+}
