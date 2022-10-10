@@ -34,6 +34,11 @@ app.use("/auth",authRoute)
 app.use("/products", productRoute)
 app.use("/orders", orderRoute)
 
+// index route
+app.get("/",(req,res)=>{
+    res.send({"message":"welcome to ecom api 🙌"})
+})
+
 // error handler
 app.use((req, res) => {
     res.status(400).send({ "error": "Something went wrong" })
