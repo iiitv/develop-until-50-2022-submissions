@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser")
+const cors = require("cors")
 
 const authRoute = require("./routes/auth")
 const productRoute = require("./routes/product")
@@ -26,6 +27,7 @@ const connect = async () => {
 }
 
 //  middlewares
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.use("/auth",authRoute)
